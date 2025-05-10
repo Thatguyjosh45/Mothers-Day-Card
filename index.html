@@ -27,6 +27,50 @@
     
     .card.open {
       transform: rotateY(160deg);
+    }<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mother's Day Card</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f3f7;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      perspective: 2000px;
+      overflow: hidden;
+      background-image: radial-gradient(circle, #fbe6f1 10%, transparent 10%),
+                        radial-gradient(circle, #fbe6f1 10%, transparent 10%);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+    }
+    
+    .card-container {
+      position: relative;
+      width: 340px;
+      height: 480px;
+      transform-style: preserve-3d;
+      transition: all 0.5s ease;
+    }
+    
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+      border-radius: 15px;
+      transform-origin: left center;
+    }
+    
+    .card.open {
+      transform: rotateY(-170deg);
     }
     
     .card-front, .card-inside {
@@ -34,21 +78,13 @@
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-    
-    /* Hide front content when card is open */
-    .card.open .front-title,
-    .card.open .front-design,
-    .card.open .front-subtitle,
-    .card.open .click-instruction {
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      border-radius: 15px;
+      overflow: hidden;
     }
     
     .card-front {
-      background: linear-gradient(to bottom right, #ff7eb9, #ff65a3);
+      background: linear-gradient(135deg, #ff9ac8, #ff65a3);
+      box-shadow: inset 0 0 30px rgba(255,255,255,0.3);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -57,54 +93,128 @@
       padding: 20px;
       box-sizing: border-box;
       z-index: 2;
+      border: 8px solid white;
+    }
+    
+    .card-front:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.5;
     }
     
     .card-inside {
-      background-color: #fff7f9;
+      background: linear-gradient(to bottom, #fff7f9, #ffeef7);
       transform: rotateY(180deg);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 30px;
       box-sizing: border-box;
-      overflow: hidden;
+      border: 8px solid white;
+      border-left: none;
+      box-shadow: inset 5px 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .spine {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 100%;
+      background: linear-gradient(to right, #ff9ac8, #ff65a3);
+      transform-origin: left;
+      z-index: 3;
+      border-radius: 3px 0 0 3px;
+      box-shadow: inset -1px 0 3px rgba(0,0,0,0.2);
+      transform: rotateY(90deg) translateZ(-10px);
+    }
+    
+    .card.open .front-title,
+    .card.open .front-design,
+    .card.open .front-subtitle,
+    .card.open .click-instruction {
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
     
     .front-title {
       color: white;
-      font-size: 28px;
+      font-size: 32px;
       margin-bottom: 20px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      font-family: 'Georgia', serif;
+      letter-spacing: 1px;
+      position: relative;
+    }
+    
+    .front-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: white;
     }
     
     .front-design {
-      margin-bottom: 20px;
+      margin: 30px 0;
+      position: relative;
     }
     
     .heart {
-      font-size: 50px;
+      font-size: 80px;
       color: white;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+      text-shadow: 0 0 15px rgba(255,255,255,0.8);
+      animation: pulse 2s infinite;
+      transform-origin: center;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
     
     .front-subtitle {
       color: white;
-      font-size: 18px;
+      font-size: 20px;
       font-style: italic;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      margin-top: 20px;
     }
     
     .popup-note {
       background-color: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       text-align: center;
-      max-width: 80%;
-      transform: translateY(20px);
+      max-width: 85%;
+      transform: translateY(50px);
       opacity: 0;
-      transition: all 0.5s ease 0.7s;
-      z-index: 10; /* Increased z-index to ensure note appears above flowers */
+      transition: all 0.8s ease 0.9s;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .popup-note:before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px dashed #ffb6d9;
+      border-radius: 8px;
+      pointer-events: none;
     }
     
     .card.open .popup-note {
@@ -119,92 +229,240 @@
       top: 0;
       left: 0;
       pointer-events: none;
-      z-index: 1; /* Make sure flowers appear behind the note */
+      z-index: 5;
+      perspective: 800px;
     }
     
     .flower {
       position: absolute;
       opacity: 0;
-      transform: scale(0) rotate(0deg);
-      transition: all 0.6s ease;
-      font-size: 24px; /* Make flowers slightly larger */
+      transform: scale(0) rotate(0deg) translateZ(0);
+      transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-size: 28px;
+      filter: drop-shadow(0 3px 5px rgba(0,0,0,0.2));
     }
     
-    /* Only show flowers when card is open */
     .card.open .flower {
       opacity: 1;
-      transform: scale(1) rotate(360deg);
+      transform: scale(1) rotate(360deg) translateZ(0);
     }
     
     .message {
-      margin-top: 10px;
+      margin-top: 15px;
       font-size: 16px;
-      line-height: 1.5;
+      line-height: 1.7;
       color: #333;
     }
     
+    .message p {
+      margin: 10px 0;
+    }
+    
     .signature {
-      margin-top: 20px;
+      margin-top: 25px;
       font-style: italic;
       color: #666;
     }
     
+    .signature p:first-child {
+      margin-bottom: 5px;
+    }
+    
     .click-instruction {
       position: absolute;
-      bottom: 10px;
+      bottom: 15px;
       color: white;
-      font-size: 12px;
+      font-size: 14px;
       opacity: 0.8;
+      background-color: rgba(255,255,255,0.2);
+      padding: 5px 12px;
+      border-radius: 20px;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    
+    .ribbons {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 40px;
+      z-index: 1;
+    }
+    
+    .ribbon {
+      position: absolute;
+      width: 10px;
+      height: 35px;
+      background-color: #ff9ac8;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transform-origin: bottom center;
+    }
+    
+    .ribbon:nth-child(1) { left: 20%; animation: sway 3s ease-in-out infinite; animation-delay: 0.2s; }
+    .ribbon:nth-child(2) { left: 30%; animation: sway 3s ease-in-out infinite; animation-delay: 0.5s; }
+    .ribbon:nth-child(3) { left: 40%; animation: sway 3s ease-in-out infinite; animation-delay: 0.7s; }
+    .ribbon:nth-child(4) { left: 50%; animation: sway 3s ease-in-out infinite; animation-delay: 0.3s; }
+    .ribbon:nth-child(5) { left: 60%; animation: sway 3s ease-in-out infinite; animation-delay: 0.6s; }
+    .ribbon:nth-child(6) { left: 70%; animation: sway 3s ease-in-out infinite; animation-delay: 0.9s; }
+    .ribbon:nth-child(7) { left: 80%; animation: sway 3s ease-in-out infinite; animation-delay: 0.4s; }
+    
+    @keyframes sway {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+    
+    .card-shadow {
+      position: absolute;
+      width: 95%;
+      height: 20px;
+      background: rgba(0,0,0,0.2);
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      filter: blur(10px);
+      opacity: 0.7;
+      transition: all 1s ease;
+    }
+    
+    .card.open + .card-shadow {
+      transform: translateX(-70%) scaleX(0.7);
+      opacity: 0.5;
+    }
+    
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      opacity: 0;
+      transform: translateY(-100vh);
+    }
+    
+    .card.open ~ .confetti {
+      animation: confetti-fall 4s ease-in-out forwards;
+    }
+    
+    @keyframes confetti-fall {
+      0% {
+        opacity: 1;
+        transform: translateY(-100vh) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(720deg);
+      }
     }
   </style>
 </head>
 <body>
-  <div class="card" id="card">
-    <div class="card-front">
-      <h1 class="front-title">Mother's Day</h1>
-      <div class="front-design">
-        <div class="heart">❤️</div>
-      </div>
-      <p class="front-subtitle">For the most amazing mom</p>
-      <p class="click-instruction">Click to open</p>
-    </div>
-    
-    <div class="card-inside">
-      <div class="popup-note">
-        <h2>Happy Mother's Day!</h2>
-        <div class="message">
-          <p>thank you for putting up with me even when im annoying</p>
-          <p>isnt having me as a son the only gift you really need?</p>
-          <p>Thank you for being my mom</p>
-          <p></p>
+  <div class="card-container">
+    <div class="card" id="card">
+      <div class="spine"></div>
+      <div class="card-front">
+        <div class="ribbons">
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
+          <div class="ribbon"></div>
         </div>
-        <div class="signature">
-          <p>love,</p>
-          <p>Josh</p>
+        <h1 class="front-title">Mother's Day</h1>
+        <div class="front-design">
+          <div class="heart">❤️</div>
+        </div>
+        <p class="front-subtitle">For the most amazing mom</p>
+        <p class="click-instruction">Click to open</p>
+      </div>
+      
+      <div class="card-inside">
+        <div class="popup-note">
+          <h2>Happy Mother's Day!</h2>
+          <div class="message">
+            <p>Thank you for putting up with me, even when I'm annoying.</p>
+            <p>Isn't having me as a son the only gift you really need?</p>
+            <p>Thank you for being my mom.</p>
+          </div>
+          <div class="signature">
+            <p>Love,</p>
+            <p>Josh</p>
+          </div>
         </div>
       </div>
+      
+      <div class="flower-container">
+        <div class="flower" style="top: 10%; left: 10%; transition-delay: 1.0s;">🌷</div>
+        <div class="flower" style="top: 10%; left: 70%; transition-delay: 1.2s;">🌸</div>
+        <div class="flower" style="top: 35%; left: 10%; transition-delay: 1.3s;">🌹</div>
+        <div class="flower" style="top: 25%; left: 85%; transition-delay: 1.4s;">🌺</div>
+        <div class="flower" style="top: 60%; left: 7%; transition-delay: 1.5s;">🌻</div>
+        <div class="flower" style="top: 70%; left: 75%; transition-delay: 1.6s;">🌼</div>
+        <div class="flower" style="top: 80%; left: 55%; transition-delay: 1.7s;">💐</div>
+        <div class="flower" style="top: 50%; left: 12%; transition-delay: 1.8s;">🏵️</div>
+        <div class="flower" style="top: 10%; left: 40%; transition-delay: 1.9s;">🌺</div>
+        <div class="flower" style="top: 85%; left: 28%; transition-delay: 2.0s;">🌷</div>
+      </div>
     </div>
-    
-    <!-- Move flowers to the card front (will appear on back when flipped) -->
-    <div class="flower-container">
-      <!-- Flowers that will pop up -->
-      <div class="flower" style="top: 10%; left: 10%; transition-delay: 0.8s;">🌷</div>
-      <div class="flower" style="top: 20%; left: 70%; transition-delay: 0.9s;">🌸</div>
-      <div class="flower" style="top: 35%; left: 10%; transition-delay: 1.0s;">🌹</div>
-      <div class="flower" style="top: 25%; left: 85%; transition-delay: 1.1s;">🌺</div>
-      <div class="flower" style="top: 60%; left: 7%; transition-delay: 1.2s;">🌻</div>
-      <div class="flower" style="top: 70%; left: 75%; transition-delay: 1.3s;">🌼</div>
-      <div class="flower" style="top: 80%; left: 55%; transition-delay: 1.4s;">💐</div>
-      <div class="flower" style="top: 50%; left: 12%; transition-delay: 1.5s;">🏵️</div>
-    </div>
+    <div class="card-shadow"></div>
   </div>
+  
+  <!-- Confetti elements -->
+  <div class="confetti" style="left: 10%; background-color: #ff9ac8; animation-delay: 0.1s;"></div>
+  <div class="confetti" style="left: 20%; background-color: #ff65a3; animation-delay: 0.3s;"></div>
+  <div class="confetti" style="left: 30%; background-color: #ffb6d9; animation-delay: 0.5s;"></div>
+  <div class="confetti" style="left: 40%; background-color: #ff9ac8; animation-delay: 0.7s;"></div>
+  <div class="confetti" style="left: 50%; background-color: #ffb6d9; animation-delay: 0.9s;"></div>
+  <div class="confetti" style="left: 60%; background-color: #ff65a3; animation-delay: 1.1s;"></div>
+  <div class="confetti" style="left: 70%; background-color: #ff9ac8; animation-delay: 1.3s;"></div>
+  <div class="confetti" style="left: 80%; background-color: #ffb6d9; animation-delay: 1.5s;"></div>
+  <div class="confetti" style="left: 90%; background-color: #ff65a3; animation-delay: 1.7s;"></div>
 
   <script>
     const card = document.getElementById('card');
     
     card.addEventListener('click', function() {
       this.classList.toggle('open');
+      
+      // Create more dynamic confetti on open
+      if (this.classList.contains('open')) {
+        for (let i = 0; i < 20; i++) {
+          setTimeout(() => {
+            createConfetti();
+          }, i * 100);
+        }
+      }
     });
+    
+    function createConfetti() {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      
+      // Random position, size, color
+      const left = Math.random() * 100;
+      const size = Math.random() * 8 + 5;
+      const colors = ['#ff9ac8', '#ff65a3', '#ffb6d9', '#ffffff'];
+      
+      confetti.style.left = left + '%';
+      confetti.style.width = size + 'px';
+      confetti.style.height = size + 'px';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDelay = Math.random() * 2 + 's';
+      
+      document.body.appendChild(confetti);
+      
+      // Clean up confetti after animation
+      setTimeout(() => {
+        confetti.remove();
+      }, 6000);
+    }
   </script>
 </body>
 </html>
